@@ -1,0 +1,49 @@
+<div class="loader_gif" *ngIf="showLoader">
+  <img [src]="globalService.basePathSmallLoader"  class="loader-image-eight">
+</div>
+<form [formGroup]="signUpForm" #formDir="ngForm">
+    <div [hidden]="formDir.submitted">
+     <div class="form-group">                     
+        <label for="name">User Name</label>
+        <input id="name" class="form-control" formControlName="name" required >
+        <div *ngIf="signUpForm.controls.name.invalid && (signUpForm.controls.name.dirty || signUpForm.controls.name.touched)"
+         class="alert alert-danger">
+        <div *ngIf="signUpForm.controls.name.errors.required">
+            Name is required.
+        </div>
+      </div>
+      </div>
+      <div class="form-group">                     
+        <label for="email">Email</label>
+        <input id="email" class="form-control" formControlName="email" required >
+        <div *ngIf="signUpForm.controls.email.invalid && (signUpForm.controls.email.dirty || signUpForm.controls.email.touched)"
+         class="alert alert-danger">
+        <div *ngIf="signUpForm.controls.email.errors.required">
+            Email is required.
+        </div>
+      </div>
+      </div>
+          
+      <div class="form-group">                     
+        <label for="password">Password</label>
+        <input class="form-control" type="password" name="password" placeholder="New Password *" formControlName="password" minlength="6"  validateEqual="cnfPassword" reverse="true">
+        <div *ngIf="signUpForm.controls.password.invalid && (signUpForm.controls.password.dirty || signUpForm.controls.password.touched)"
+         class="alert alert-danger">
+        <div *ngIf="signUpForm.controls.password.errors.required">
+            Password is required.
+        </div>
+      </div>
+      </div>
+      <div class="form-group">                     
+        <label for="cnfPassword">Confirm Password</label>
+        <input class="form-control" type="password" placeholder="Confirm password *" name="cnfPassword" reverse="false" validateEqual="password" formControlName="cnfPassword" minlength="6"> 
+        <div *ngIf="signUpForm.controls.cnfPassword.invalid && (signUpForm.controls.cnfPassword.dirty || signUpForm.controls.cnfPassword.touched)"
+         class="alert alert-danger">
+        <div *ngIf="signUpForm.controls.cnfPassword.errors.required">
+            Password Mismatch
+        </div>
+      </div>
+      </div>
+      <button pButton type="button" label="Sign Up" (click)="signUp()"></button>
+</div>
+</form>

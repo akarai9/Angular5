@@ -1,0 +1,61 @@
+<div class="loader_gif" *ngIf="showLoader">
+  <img [src]="globalService.basePathSmallLoader"  class="loader-image-eight">
+</div>
+ <form [formGroup]="loginForm" (ngSubmit)='login()' #formDir="ngForm" ng-model-options="{ updateOn: 'submit' }">
+    <div>
+      <div class="ui-grid ui-grid-responsive ui-grid-pad ui-fluid" style="margin: 10px 0px">
+      <div class="ui-grid-row">
+      <div class="form-group">                     
+         <div class="ui-grid-col-4">
+            <label for="email">User Name</label>
+          </div>
+          <div class="ui-grid-col-8">
+            <input id="email" class="form-control" formControlName="email" required >
+              <div *ngIf="email.invalid && (email.dirty || email.touched)"
+               class="alert alert-danger">
+                  Username is required.
+              </div>
+          </div>  
+      </div>
+  </div>
+    <div class="ui-grid-row">
+      <div class="form-group">
+        <div class="ui-grid-col-4">
+           <label for="password">Password</label>
+        </div>
+        <div class="ui-grid-col-8">
+        <input type="password" id="password" class="form-control" formControlName="password" required>
+        <div *ngIf="password.invalid && (password.dirty || password.touched)"
+         class="alert alert-danger">
+            Password is required.
+      </div>
+    </div>
+      </div>
+    </div>
+       </div>
+       <a (click)="display = true">Forgot Password</a>
+      <button pButton type="submit" label="Login" [disabled]="showLoader"></button>
+</div>
+</form>
+
+<!-- Forget Password -->
+<p-dialog header="Forget Password" width="500" [(visible)]="display" [responsive]="true" 
+[closable]="false" modal="modal">  
+  <p-header>
+    <a class="pull-right" (click)='display = false;globalService.closePopUp(forgotPasswordForm)'>
+    <i class="fa fa-close"></i></a>
+  </p-header> 
+<div class="loader_gif" *ngIf="showLoader">
+    <img [src]="globalService.basePathLoader"  class="loader-image-eight">
+</div> 
+    <form [formGroup]="forgotPasswordForm">
+        <div class="form-group"> 
+            <input class="form-control" type="text" placeholder="Email *" 
+         formControlName="email" email> 
+        </div>
+        <div class="btn_sav_btn">
+            <button pButton type="button" label="Send" (click)='forgotPasswordOfUser()' 
+            [disabled]="showLoader"></button>
+        </div>
+    </form>
+</p-dialog>
