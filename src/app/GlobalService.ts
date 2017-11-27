@@ -187,7 +187,7 @@ export class GlobalService {
     }
     
      /*Close PopUp*/
-    closePopUp = (value,display) => { value.reset();display = false; }
+    closePopUp = (value) => { value.reset();}
 
     /*Scroll to top*/
     scrollBar(){
